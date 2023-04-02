@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Send Data to Python Console</title>
+</head>
+<body>
+	<form method="POST" action="http://localhost:8000">
+		<label for="data">Enter PIN:</label>
+		<input type="text" id="data" name="PIN">
+		<button type="submit">Send</button>
+	</form>
+
+	<script>
+		var form = document.querySelector('form');
+		form.addEventListener('submit', function(event) {
+			event.preventDefault();
+
+			var data = document.querySelector('#data').value;
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', form.action);
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.send('PIN=' + data);
+		});
+	</script>
+</body>
+</html>
